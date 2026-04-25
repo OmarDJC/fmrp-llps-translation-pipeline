@@ -1,6 +1,6 @@
 # LLPS Propensity Prediction
 
-LLPS propensity was evaluated using two independent web-based tools:
+LLPS propensity was evaluated using two independent tools:
 
 - PSPredictor: http://www.pkumdl.cn:8000/PSPredictor/
 - FuzDrop: https://fuzdrop.bio.unipd.it/predictor/
@@ -11,11 +11,13 @@ Protein sequences (FASTA format) obtained from Ensembl BioMart.
 
 ## Procedure
 
-1. Protein sequences were submitted manually to both predictors.
-2. Scores were retrieved for each protein:
-   - PSPredictor score
-   - FuzDrop score
-3. Results were compiled into a CSV table.
+1. Protein sequences were submitted manually to PSPredictor to obtain LLPS propensity scores.
+2. For FuzDrop, instead of manual submission, I used precomputed LLPS propensity scores for full proteomes:
+   - *Mus musculus* and *Rattus norvegicus* proteomes
+   - Data obtained from Supplementary Datasets S7 and S8 of:
+     *Widespread occurrence of the droplet state of proteins in the human proteome*  
+     (PNAS, 2020, 117(52):33254–33262)
+3. Scores from both predictors were compiled into a unified CSV table.
 
 ## Output
 
@@ -32,9 +34,8 @@ Proteins were classified as LLPS-prone if:
 
 ## Notes
 
-This step was performed manually due to:
-- lack of stable programmatic APIs
-- batch submission limitations
+- PSPredictor analysis was performed manually due to lack of stable programmatic APIs and batch submission limitations.
+- FuzDrop scores were retrieved from published proteome-wide datasets, ensuring consistency and avoiding redundancy in computation.
 
 The resulting table is provided in:
 
