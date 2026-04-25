@@ -26,8 +26,6 @@ condition
 test.results <- xtail(test.mrna,test.rpf,condition, 
                       minMeanCount = 10,bins=1000,ci=0.95)
 
-#test.results <- xtail(test.mrna,test.rpf,condition, 
-                      #threads = 2, bins=1000,minMeanCount = 10)
 #notes on test:
 #ci=0.95 is	alpha i.e.
 #the level of confindence to get credible intervals of log2 fold change of 
