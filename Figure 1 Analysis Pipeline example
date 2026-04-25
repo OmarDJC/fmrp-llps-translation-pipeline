@@ -1,0 +1,118 @@
+#Load required libraries
+
+# Visualization and statistics
+library(ggpubr)
+library(ggplot2)
+library(ggstatsplot)
+
+# Data manipulation
+library(tidyverse)
+library(dplyr)
+library(plyr)
+library(tibble)
+
+# Statistical testing
+library(rstatix)
+library(EnvStats)
+
+# Plot styling
+library(hrbrthemes)
+library(viridis)
+library(scales)
+library(cowplot)
+library(patchwork)
+
+# Advanced plotting utilities
+library(gghighlight)
+library(ggpmisc)
+library(ggpp)
+
+# Graph/network tools (not used in this figure but loaded)
+library(tidygraph)
+library(ggraph)
+
+#Import datasets
+# CDS length data
+data1 <- read.table("CDS_Fig1.csv", header=TRUE, sep=",")
+
+# Disorder and LLPS-related features
+data2 <- read.table("LLPS_Disorder_Fig1.csv", header=TRUE, sep=",")
+data3 <- data2
+data4 <- data2
+
+#Define group aesthetics and comparisons
+
+# Color palettes for groups
+group_colors <- c(
+  "All genes" = "#D9D0D3",
+  "Decreased TE in FK" = "#FEB7AA",
+  "Increased TE in FK" = "#C4D8F3"
+)
+
+group_colors2 <- c(
+  "All poteins" = "#D9D0D3",
+  "Decreased TE in FK" = "#FEB7AA",
+  "Increased TE in FK" = "#C4D8F3"
+)
+
+# Pairwise comparisons
+my_comparisons1 <- list(
+  c("All genes", "2Decreased TE in FK"),
+  c("All genes", "3Increased TE in FK"),
+  c("Decreased TE in FK", "3Increased TE in FK")
+)
+
+my_comparisons2 <- list(
+  c("All proteins", "2Decreased TE in FK"),
+  c("All proteins", "3Increased TE in FK"),
+  c("Decreased TE in FK", "3Increased TE in FK")
+)
+
+#Statistical testing (CDS length)
+#stat.test1 <- data1 %>%
+  t_test(CDS ~ group, paired = FALSE, comparisons = my_comparisons1) %>%
+  adjust_pvalue(method = "holm") %>%   # multiple testing correction
+  add_significance("p.adj") %>%
+  mutate(y.position = c(log10(750), log10(1250), log10(2050)))
+
+#Purpose:Compare CDS length across translational efficiency (TE) groups,
+#Apply Holm correction to control family-wise error rate
+
+#Plot A: CDS length distribution
+p1 <- ggbetweenstats(
+  data = data1,
+  x = group,
+  y = CDS,
+  results.subtitle = FALSE,
+  var.equal = TRUE,
+  p.adjust.method = "holm",
+  pairwise.display = "none",
+
+  point.args = list(
+    position = position_jitterdodge(dodge.width = 0.6),
+    alpha = 0
+  ),
+
+  violin.args = list(width = 0.5, alpha = 0.1, fill = "white"),
+  boxplot.args = list(width = 0.3, alpha = 0.4, fill = group_colors),
+
+  ggsignif.args = list(textsize = 3.5),
+  centrality.label.args = list(size = 4)
+) +
+  ylab("CDS length (kb, Log scale)") +
+  scale_y_continuous(
+    trans = pseudo_log_trans(sigma = 1, base = exp(1)),
+    limits = c(0, exp(3.5)),
+    breaks = c(0,1,2,3,5,10,15,20),
+    labels = comma
+  ) +
+  theme_ipsum(base_size = 16) +
+  theme(legend.position = "none") +
+  stat_pvalue_manual(stat.test1, label = "p = {p.adj}")
+
+#Statistical testing (Disorder content)
+stat.test2 <- data2 %>%
+  t_test(disorder ~ group, paired = FALSE, comparisons = my_comparisons2) %>%
+  adjust_pvalue(method = "holm") %>%
+  add_significance("p.adj") %>%
+  mutate(y.position = c(105, 112, 119))
