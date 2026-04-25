@@ -1,12 +1,18 @@
-# Statistical analysis
+# Main statistical analysis method = "holm"
 
-library(stats)
+library(ggplot2)
+library(EnvStats)
+library(ggstatsplot)
+library(scales)
+library(rstatix)
+library(scales)
 
-data <- read.csv("results/llps_scores.csv")
+data <- read.csv("results/llps_scores_DecreasedTE_VS_IncreasedTE.csv", header=TRUE, sep=",")
+my_comparisons <- list(c("All proteins", "Decreased TE"),c("All proteins", "Increased TE"),c("Decreased TE", "Increased TE"))
 
 # Compare LLPS scores
-t.test(data$LLPS_score ~ data$group)
-
-# Multiple testing correction example
-pvals <- data$pvalue
-p.adjust(pvals, method = "holm")
+stat.test <- data %>%
+  t_test(CDS ~ group, paired = FALSE,comparisons = my_comparisons) %>%
+  adjust_pvalue(method = "holm") %>%
+  add_significance("p.adj")%>%
+stat.test1
