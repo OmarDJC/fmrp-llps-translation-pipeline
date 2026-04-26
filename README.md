@@ -31,10 +31,10 @@ Inputs, processing steps, and outputs are explicitly defined.
 ## Figure 1 Analysis Pipeline Example (Annotated R Script)
 
 This pipeline:
-Compares gene/protein features across TE-defined groups
-Uses pairwise t-tests with Holm correction
-Visualizes distributions with violin + boxplots
-Integrates statistical annotations directly into plots
+Compares gene/protein features across TE-defined groups,
+Uses pairwise t-tests with Holm correction,
+Visualizes distributions with violin + boxplots,
+Integrates statistical annotations directly into plots.
 Variables analyzed:
 A: CDS length
 B: Intrinsic disorder (%)
