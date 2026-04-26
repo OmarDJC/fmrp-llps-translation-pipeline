@@ -49,4 +49,5 @@ Full datasets are available from GEO and referenced databases.
 
 ## Contact
 
-Omar David Jurado Carrera
+Dr. Omar Jurado
+omarjuradocarrera@gmail.com
