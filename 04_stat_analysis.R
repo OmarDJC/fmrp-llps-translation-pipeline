@@ -1,17 +1,16 @@
-# Main statistical analysis method t_test "holm"
-#Apply Holm correction to control family-wise error rate
+# Example of statistical analysis of LLPS propensity across TE-defined groups
+# Method: pairwise Welch t-tests with Holm correction
 
-#Load required libraries
-library(EnvStats)
+library(dplyr)
 library(rstatix)
 
-#Import datasets
-data <- read.csv("results/llps_scores_DecreasedTE_VS_IncreasedTE.csv", header=TRUE, sep=",")
-my_comparisons <- list(c("All proteins", "Decreased TE"),c("All proteins", "Increased TE"),c("Decreased TE", "Increased TE"))
+data <- read.csv("results/llps_scores_DecreasedTE_VS_IncreasedTE.csv")
 
-# Compare LLPS scores
+data$group <- factor(data$group)
+
 stat.test <- data %>%
-  t_test(PSPre_Score ~ group, paired = FALSE,comparisons = my_comparisons) %>%
+  t_test(PSPre_Score ~ group, var.equal = FALSE) %>%  # Welch t-test
   adjust_pvalue(method = "holm") %>%
-  add_significance("p.adj")%>%
-stat.test1
+  add_significance("p.adj")
+
+stat.test
