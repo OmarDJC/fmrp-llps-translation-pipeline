@@ -15,7 +15,7 @@ This pipeline integrates ribosome profiling (Ribo-seq), RNA-seq data, and protei
 2. Differential translation analysis (Xtail)  
 3. LLPS prediction (PSPredictor, FuzDrop)  
 4. Statistical analysis and validation  
-***Check also: pipeline_summary.md
+
 ## Key Features
 
 - Integration of multiple independent datasets  
