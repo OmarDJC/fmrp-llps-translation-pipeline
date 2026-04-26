@@ -1,6 +1,6 @@
 # FMRP–LLPS Translation Pipeline
 
-This repository contains a documented computational workflow for the analysis presented in:
+This repository contains a documented computational workflow for the main analysis presented in:
 
 **Jurado et al., BioSystems (2025)**  
 https://doi.org/10.1016/j.biosystems.2025.105405
