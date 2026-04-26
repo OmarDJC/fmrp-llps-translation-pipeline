@@ -7,7 +7,7 @@ https://doi.org/10.1016/j.biosystems.2025.105405
 
 ## Overview
 
-This pipeline integrates ribosome profiling (Ribo-seq), RNA-seq data, and protein sequence-based predictors to investigate whether FMRP-regulated mRNAs encode proteins with liquid–liquid phase separation (LLPS) propensity.
+This pipeline integrates ribosome profiling (Ribo-seq), RNA-seq data, and protein sequence-based predictors to investigate whether FMRP-regulated mRNAs encode proteins with liquid–liquid phase separation (LLPS) propensity. For details check pipeline_summary.md
 
 ## Workflow
 
