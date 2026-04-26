@@ -29,7 +29,7 @@ This pipeline integrates ribosome profiling (Ribo-seq), RNA-seq data, and protei
 All analyses are structured as modular scripts.  
 Inputs, processing steps, and outputs are explicitly defined.
 
-#Figure 1 Analysis Pipeline Example (Annotated R Script)
+## Figure 1 Analysis Pipeline Example (Annotated R Script)
 
 This pipeline:
 Compares gene/protein features across TE-defined groups
