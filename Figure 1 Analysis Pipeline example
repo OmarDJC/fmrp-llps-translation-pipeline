@@ -69,7 +69,7 @@ my_comparisons2 <- list(
 )
 
 #Statistical testing (CDS length)
-#stat.test1 <- data1 %>%
+stat.test1 <- data1 %>%
   t_test(CDS ~ group, paired = FALSE, comparisons = my_comparisons1) %>%
   adjust_pvalue(method = "holm") %>%   # multiple testing correction
   add_significance("p.adj") %>%
@@ -116,3 +116,83 @@ stat.test2 <- data2 %>%
   adjust_pvalue(method = "holm") %>%
   add_significance("p.adj") %>%
   mutate(y.position = c(105, 112, 119))
+
+#Plot B: Intrinsic disorder
+p2 <- ggbetweenstats(
+  data = data2,
+  x = group,
+  y = disorder,
+  results.subtitle = FALSE,
+  var.equal = TRUE,
+  pairwise.display = "none",
+
+  violin.args = list(width = 0.5, alpha = 0.1, fill = "white"),
+  boxplot.args = list(width = 0.3, alpha = 0.4, fill = group_colors2)
+) +
+  ylab("% disordered residues") +
+  scale_y_continuous(breaks = seq(0, 100, 20)) +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) +
+  theme_ipsum(base_size = 16) +
+  theme(legend.position = "none") +
+  stat_pvalue_manual(stat.test2, label = "p = {p.adj}")
+
+#Statistical testing (PSPredictor score)
+stat.test3 <- data3 %>%
+  t_test(PSPre_Score ~ group, paired = FALSE, comparisons = my_comparisons2) %>%
+  adjust_pvalue(method = "holm") %>%
+  add_significance("p.adj") %>%
+  mutate(y.position = c(1.03, 1.08, 1.14))
+
+#Plot C: PSPredictor score
+p3 <- ggbetweenstats(
+  data = data3,
+  x = group,
+  y = PSPre_Score,
+  results.subtitle = FALSE,
+  var.equal = TRUE,
+  pairwise.display = "none",
+
+  violin.args = list(width = 0.5, alpha = 0.1, fill = "white"),
+  boxplot.args = list(width = 0.3, alpha = 0.4, fill = group_colors2)
+) +
+  ylab("PSP Score") +
+  scale_y_continuous(breaks = seq(0, 1, 0.2)) +
+  theme_ipsum(base_size = 16) +
+  theme(legend.position = "none") +
+  stat_pvalue_manual(stat.test3, label = "p = {p.adj}")
+
+#Statistical testing (FuzDrop score)
+stat.test4 <- data4 %>%
+  t_test(Fuzdrop_Score ~ group, paired = FALSE, comparisons = my_comparisons2) %>%
+  adjust_pvalue(method = "holm") %>%
+  add_significance("p.adj") %>%
+  mutate(y.position = c(1.03, 1.08, 1.14))
+
+#Plot D: FuzDrop score
+p4 <- ggbetweenstats(
+  data = data4,
+  x = group,
+  y = Fuzdrop_Score,
+  results.subtitle = FALSE,
+  var.equal = TRUE,
+  pairwise.display = "none",
+
+  violin.args = list(width = 0.5, alpha = 0.1, fill = "white"),
+  boxplot.args = list(width = 0.3, alpha = 0.4, fill = group_colors2)
+) +
+  ylab("Fuzdrop Score") +
+  scale_y_continuous(breaks = seq(0, 1, 0.2)) +
+  theme_ipsum(base_size = 16) +
+  theme(legend.position = "none") +
+  stat_pvalue_manual(stat.test4, label = "p = {p.adj}")
+
+#Assemble multi-panel figure
+figure <- ggarrange(
+  p1, p2, p3, p4,
+  labels = c("A", "B", "C", "D"),
+  ncol = 2, nrow = 2
+)
+
+figure
+
+#Output: Final Figure 1 (A–D panels)
