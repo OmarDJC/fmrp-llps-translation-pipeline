@@ -23,6 +23,19 @@ This pipeline integrates ribosome profiling (Ribo-seq), RNA-seq data, and protei
 - Statistical controls (randomized gene sets, multiple testing correction)  
 - Biological validation (synaptic and neurodevelopmental enrichment)
 
+## Data acquisition
+
+Ribosome profiling (Ribo-seq) and RNA-seq datasets were obtained from the Gene Expression Omnibus (GEO):
+
+- GSE143659  
+- GSE127847  
+- GSE143333  
+- GSE114064  
+- GSE101823  
+- GSE137878  
+
+For each dataset, raw count matrices for mRNA and RPF were used. Only experiments containing both wild-type (WT) and knockout (KO) conditions with biological replicates were included.
+
 ## Reproducibility
 
 All analyses are structured as modular scripts.  
