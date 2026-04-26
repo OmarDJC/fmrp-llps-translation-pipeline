@@ -85,11 +85,11 @@ ________________________________________
 5. Reproducibility and Implementation
 •	All analyses conducted using structured R-based workflows 
 •	Modular pipeline: 
-1.	Data acquisition 
-2.	Differential translation analysis 
-3.	Sequence extraction 
-4.	LLPS prediction 
-5.	Statistical validation 
+-	Data acquisition 
+-	Differential translation analysis 
+-	Sequence extraction 
+-	LLPS prediction 
+-	Statistical validation 
 •	Scripts are organized to allow reproducibility of each step (data → processing → output) 
 ________________________________________
 6. Limitations and Considerations
