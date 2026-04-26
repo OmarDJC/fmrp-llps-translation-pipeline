@@ -1,6 +1,3 @@
-# fmrp-llps-translation-pipeline
-Determine differential translated genes and the LLPS tendencies of their encoded proteins
-
 # FMRP–LLPS Translation Pipeline
 
 This repository contains a documented computational workflow for the analysis presented in:
