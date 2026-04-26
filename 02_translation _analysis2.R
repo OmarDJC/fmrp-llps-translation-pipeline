@@ -1,45 +1,61 @@
-#xtail
+# =========================================================
+# xtail analysis: Differential Translational Efficiency (TE)
+# =========================================================
 
-library(xtail) 
+library(xtail)
 
-# Load data
+# ---------------------------------------------------------
+# Step 1 — Load raw count data (NOT TPM)
+# ---------------------------------------------------------
+# Rows: genes
+# Columns: samples (matched between mRNA and RPF)
 
-test.mrna <- read.csv('raw_mrna_tpm.csv',header=T, row.names = 1)
-head(test.mrna)
+mrna_counts <- read.csv("data/raw_mrna_counts.csv", header = TRUE, row.names = 1)
+rpf_counts  <- read.csv("data/raw_rpf_counts.csv",  header = TRUE, row.names = 1)
 
-test.rpf <- read.csv('raw_rpf_tpm.csv',header=T,row.names = 1)
-head(test.rpf)
+# Optional sanity check
+stopifnot(all(colnames(mrna_counts) == colnames(rpf_counts)))
 
-test.mrna <- round(test.mrna)
-test.rpf <- round(test.rpf)
+# ---------------------------------------------------------
+# Step 2 — Define experimental conditions
+# ---------------------------------------------------------
+condition <- factor(c("wt","wt","wt","ko","ko","ko"))
 
-# Label conditions
+# Note:
+# The second condition ("ko") is compared against the first ("wt")
 
-condition<- c("wt","wt","wt","ko","ko","ko")
-condition
+# ---------------------------------------------------------
+# Step 3 — Run xtail analysis
+# ---------------------------------------------------------
+set.seed(123)
 
-#notes on conditions: By default, the second condition (here is `ko`) 
-#would be compared against the first condition (here is `wt`).
+xtail_results <- xtail(
+  mrna_counts,
+  rpf_counts,
+  condition,
+  minMeanCount = 10,   # filter low-expression genes
+  bins = 1000,         # resolution of posterior estimation
+  ci = 0.95            # 95% credible interval (NOT alpha)
+)
 
-#test
+# ---------------------------------------------------------
+# Step 4 — Extract results table
+# ---------------------------------------------------------
+results <- resultsTable(
+  xtail_results,
+  sort.by = "pvalue.adjust"
+)
 
-test.results <- xtail(test.mrna,test.rpf,condition, 
-                      minMeanCount = 10,bins=1000,ci=0.95)
+write.csv(results, "results/xtail_results_minMean10_bins1000_ci95.csv")
 
-#notes on test:
-#ci=0.95 is	alpha i.e.
-#the level of confindence to get credible intervals of log2 fold change of 
-#translational efficiency (TE), for example 0.95.
+# ---------------------------------------------------------
+# Step 5 — Summary of significant genes
+# ---------------------------------------------------------
+summary_results <- summary(xtail_results, alpha = 0.1)
 
-#results
-results <- resultsTable(test.results, sort.by = "pvalue.adjust")
+write.csv(summary_results, "results/xtail_summary_alpha0.1.csv")
 
-write.csv(results,"Test_xtail_minMeanCount = 10,bins=1000,ci=0.95.csv")
-
-#plot
-plotFCs(test.results)
-
-#results table
-sumresults <- summary(test.results, alpha = 0.1)
-
-write.csv(sumresults,"Test_xtail_alpha0.05.csv")
+# ---------------------------------------------------------
+# Step 6 — Visualization
+# ---------------------------------------------------------
+plotFCs(xtail_results)
