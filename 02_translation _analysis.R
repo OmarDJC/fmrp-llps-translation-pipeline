@@ -5,13 +5,13 @@
 library(xtail)
 
 # ---------------------------------------------------------
-# Step 1 — Load raw count data (NOT TPM)
+# Step 1 — Load raw count data - GSE143659 example
 # ---------------------------------------------------------
 # Rows: genes
 # Columns: samples (matched between mRNA and RPF)
 
-mrna_counts <- read.csv("data/raw_mrna_counts.csv", header = TRUE, row.names = 1)
-rpf_counts  <- read.csv("data/raw_rpf_counts.csv",  header = TRUE, row.names = 1)
+mrna_counts <- read.csv("data/GSE143659_raw_mrna_counts.csv", header = TRUE, row.names = 1)
+rpf_counts  <- read.csv("data/GSE143659_raw_rpf_counts.csv",  header = TRUE, row.names = 1)
 
 # Optional sanity check
 stopifnot(all(colnames(mrna_counts) == colnames(rpf_counts)))
@@ -46,12 +46,12 @@ results <- resultsTable(
   sort.by = "pvalue.adjust"
 )
 
-write.csv(results, "results/xtail_results_minMean10_bins1000_ci95.csv")
+write.csv(results, "results/xtail_results_GSE143659_minMean10_bins1000_ci95.csv")
 
 # ---------------------------------------------------------
 # Step 5 — Summary of significant genes
 # ---------------------------------------------------------
-summary_results <- summary(xtail_results, alpha = 0.1)
+summary_results_GSE143659 <- summary(xtail_results, alpha = 0.1)
 
 write.csv(summary_results, "results/xtail_summary_alpha0.1.csv")
 
