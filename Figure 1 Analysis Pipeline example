@@ -1,3 +1,5 @@
+#Figure 1 Analysis Pipeline
+
 #Load required libraries
 
 # Visualization and statistics
@@ -37,8 +39,6 @@ data1 <- read.table("CDS_Fig1.csv", header=TRUE, sep=",")
 
 # Disorder and LLPS-related features
 data2 <- read.table("LLPS_Disorder_Fig1.csv", header=TRUE, sep=",")
-data3 <- data2
-data4 <- data2
 
 #Define group aesthetics and comparisons
 
@@ -50,7 +50,7 @@ group_colors <- c(
 )
 
 group_colors2 <- c(
-  "All poteins" = "#D9D0D3",
+  "All proteins" = "#D9D0D3",
   "Decreased TE in FK" = "#FEB7AA",
   "Increased TE in FK" = "#C4D8F3"
 )
@@ -137,7 +137,7 @@ p2 <- ggbetweenstats(
   stat_pvalue_manual(stat.test2, label = "p = {p.adj}")
 
 #Statistical testing (PSPredictor score)
-stat.test3 <- data3 %>%
+stat.test3 <- data2 %>%
   t_test(PSPre_Score ~ group, paired = FALSE, comparisons = my_comparisons2) %>%
   adjust_pvalue(method = "holm") %>%
   add_significance("p.adj") %>%
@@ -145,7 +145,7 @@ stat.test3 <- data3 %>%
 
 #Plot C: PSPredictor score
 p3 <- ggbetweenstats(
-  data = data3,
+  data = data2,
   x = group,
   y = PSPre_Score,
   results.subtitle = FALSE,
@@ -162,7 +162,7 @@ p3 <- ggbetweenstats(
   stat_pvalue_manual(stat.test3, label = "p = {p.adj}")
 
 #Statistical testing (FuzDrop score)
-stat.test4 <- data4 %>%
+stat.test4 <- data2 %>%
   t_test(Fuzdrop_Score ~ group, paired = FALSE, comparisons = my_comparisons2) %>%
   adjust_pvalue(method = "holm") %>%
   add_significance("p.adj") %>%
@@ -170,7 +170,7 @@ stat.test4 <- data4 %>%
 
 #Plot D: FuzDrop score
 p4 <- ggbetweenstats(
-  data = data4,
+  data = data2,
   x = group,
   y = Fuzdrop_Score,
   results.subtitle = FALSE,
