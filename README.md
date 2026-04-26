@@ -16,7 +16,7 @@ This pipeline integrates ribosome profiling (Ribo-seq), RNA-seq data, and protei
 3. Sequence retrieval (Ensembl BioMart)  
 4. LLPS prediction (PSPredictor, FuzDrop)  
 5. Statistical analysis and validation  
-***Check also pipelinesummary.md
+***Check also: pipeline_summary.md
 ## Key Features
 
 - Integration of multiple independent datasets  
