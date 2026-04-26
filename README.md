@@ -32,6 +32,19 @@ This pipeline integrates ribosome profiling (Ribo-seq), RNA-seq data, and protei
 All analyses are structured as modular scripts.  
 Inputs, processing steps, and outputs are explicitly defined.
 
+#Figure 1 Analysis Pipeline Example (Annotated R Script)
+
+This pipeline:
+Compares gene/protein features across TE-defined groups
+Uses pairwise t-tests with Holm correction
+Visualizes distributions with violin + boxplots
+Integrates statistical annotations directly into plots
+Variables analyzed:
+A: CDS length
+B: Intrinsic disorder (%)
+C: PSPredictor score (LLPS propensity)
+D: FuzDrop score (LLPS propensity)
+
 ## Note
 
 This repository provides a **minimal reproducible representation** of the pipeline.  
