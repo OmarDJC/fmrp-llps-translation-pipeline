@@ -10,8 +10,8 @@ library(xtail)
 # Rows: genes
 # Columns: samples (matched between mRNA and RPF)
 
-mrna_counts <- read.csv("data/GSE143659_raw_mrna_counts.csv", header = TRUE, row.names = 1)
-rpf_counts  <- read.csv("data/GSE143659_raw_rpf_counts.csv",  header = TRUE, row.names = 1)
+mrna_counts <- read.csv("data/GSE143659_rna_cds_counts.csv", header = TRUE, row.names = 1)
+rpf_counts  <- read.csv("data/GSE143659_ribo_cds_counts.csv",  header = TRUE, row.names = 1)
 
 # Optional sanity check
 stopifnot(all(colnames(mrna_counts) == colnames(rpf_counts)))
