@@ -36,7 +36,3 @@ Proteins were classified as LLPS-prone if:
 
 - PSPredictor analysis was performed manually due to lack of stable programmatic APIs and batch submission limitations.
 - FuzDrop scores were retrieved from published proteome-wide datasets, ensuring consistency and avoiding redundancy in computation.
-
-The resulting table is provided in:
-
-`data/llps_scores.csv`
