@@ -1,5 +1,5 @@
 # =========================================================
-# xtail analysis: Differential Translational Efficiency (TE)
+# Xtail analysis: Differential Translational Efficiency (TE)
 # =========================================================
 
 library(xtail)
@@ -19,7 +19,7 @@ stopifnot(all(colnames(mrna_counts) == colnames(rpf_counts)))
 # ---------------------------------------------------------
 # Step 2 — Define experimental conditions
 # ---------------------------------------------------------
-condition <- factor(c("wt","wt","wt","ko","ko","ko"))
+condition <- factor(c("wt","wt","wt","wt","ko","ko","ko","ko"))
 
 # Note:
 # The second condition ("ko") is compared against the first ("wt")
