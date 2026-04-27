@@ -11,10 +11,10 @@ This pipeline integrates ribosome profiling (Ribo-seq), RNA-seq data, and protei
 
 ## Workflow
 
-1. Data acquisition and preprocessing  
+1. Data acquisition and preprocessing (optional)  
 2. Differential translation analysis (Xtail)  
 3. LLPS prediction (PSPredictor, FuzDrop) and Intrinsic disorder analysis (RIDAO) 
-4. Statistical analysis and validation  
+4. Statistical analysis   
 
 ## Key Features
 
@@ -35,6 +35,13 @@ Ribosome profiling (Ribo-seq) and RNA-seq datasets were obtained from the Gene E
 - GSE137878  
 
 For each dataset, raw count matrices for mRNA and RPF were used. Only experiments containing both wild-type (WT) and knockout (KO) conditions with biological replicates were included.
+
+Minimal preprocessing was applied prior to analysis:
+- Matching gene identifiers between mRNA and RPF datasets
+- Ensuring consistent sample ordering across matrices
+
+Filtering of low-expression genes (mean count ≥ 10) was performed internally within xtail (parameter `minMeanCount`).
+No additional normalization or transformation was applied, as xtail operates directly on count data.
 
 ## Reproducibility
 
