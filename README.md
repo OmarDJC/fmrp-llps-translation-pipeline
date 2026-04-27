@@ -11,7 +11,7 @@ This pipeline integrates ribosome profiling (Ribo-seq), RNA-seq data, and protei
 
 ## Workflow
 
-1. Data acquisition and preprocessing (optional)  
+1. Data acquisition and preprocessing
 2. Differential translation analysis (Xtail)  
 3. LLPS prediction (PSPredictor, FuzDrop) and Intrinsic disorder analysis (RIDAO) 
 4. Statistical analysis   
