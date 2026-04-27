@@ -13,11 +13,11 @@ Protein sequences (FASTA format) corresponding to differentially translated gene
 
 Datasets analyzed:
 
-GSE143659
-GSE127847
-GSE143333
-GSE114064
-GSE101823
+GSE143659,
+GSE127847,
+GSE143333,
+GSE114064,
+GSE101823,
 GSE137878
 
 Final dataset:
@@ -62,6 +62,6 @@ FuzDrop ≥ 0.6
 Otherwise, proteins were classified as non–LLPS-prone.
 
 ## Notes
-PSPredictor and RIDAO analyses were performed manually due to lack of stable APIs and batch submission limitations
-FuzDrop scores were retrieved from published proteome-wide datasets
-Intrinsic disorder content was used as a complementary structural feature to interpret LLPS propensity
+PSPredictor and RIDAO analyses were performed manually due to lack of stable APIs and batch submission limitations.
+FuzDrop scores were retrieved from published proteome-wide datasets.
+Intrinsic disorder content was used as a complementary structural feature to interpret LLPS propensity.
