@@ -3,8 +3,8 @@
 library(dplyr)
 
 # Load raw count matrices - GSE143659 example
-mrna <- read.csv("raw/GSE143659_mrna_counts_raw.csv", row.names = 1)
-rpf  <- read.csv("raw/GSE143659_rpf_counts_raw.csv", row.names = 1)
+mrna <- read.csv("raw/GSE143659_rna_cds_counts.csv", row.names = 1)
+rpf  <- read.csv("raw/GSE143659_ribo_cds_counts.csv", row.names = 1)
 
 # Ensure same genes
 common_genes <- intersect(rownames(mrna), rownames(rpf))
