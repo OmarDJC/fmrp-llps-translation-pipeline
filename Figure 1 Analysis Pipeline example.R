@@ -34,7 +34,7 @@ library(tidygraph)
 library(ggraph)
 
 #Import datasets
-# CDS length data
+# CDS length data obtained from Ensembl BioMart of the differential translated genes
 data1 <- read.table("CDS_Fig1.csv", header=TRUE, sep=",")
 
 # Disorder and LLPS-related features
