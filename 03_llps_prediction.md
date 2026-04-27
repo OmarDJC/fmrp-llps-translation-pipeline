@@ -7,7 +7,7 @@ LLPS propensity was evaluated using two independent tools:
 
 ## Input
 
-Protein sequences (FASTA format) obtained from Ensembl BioMart.
+Protein sequences (FASTA format) obtained from Ensembl BioMart of the differential translated genes (Xtail results) of: GSE143659, GSE127847, GSE143333, GSE114064, GSE101823, and GSE137878. Final dataset: 2,313 genes with decreased translation efficiency (TE) and 1,734 genes with increased TE.
 
 ## Procedure
 
